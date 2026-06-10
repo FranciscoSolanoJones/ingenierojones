@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingeniero Jones — Protocolo SRT 900/15, Puesta a Tierra y Nuevos Suministros | Buenos Aires</title>
+  <meta name="description" content="Ing. Francisco Solano Jones (Matrícula CIPBA 57121). Protocolo SRT 900/15, medición de puesta a tierra (PAT), CAIE, nuevos suministros y certificaciones eléctricas. Zona General Rodríguez y alrededores, Provincia de Buenos Aires.">
+  <link rel="canonical" href="https://ingenierojones.com.ar/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=Saira:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --panel2: #eef3f9;
+      --text: #101b27;
+      --muted: #55646f;
+      --blue: #1ea7ff;
+      --blue-ink: #0b63bd;
+      --line: rgba(16,27,39,.12);
+      --grid: rgba(30,167,255,.06);
+      --shadow: 0 18px 50px rgba(20,45,80,.12);
+      --display: "Saira Condensed", "Arial Narrow", sans-serif;
+      --body: "Saira", system-ui, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--body);
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(900px 520px at 84% -160px, rgba(30,167,255,.10), transparent 60%),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 100% 100%, 36px 36px, 36px 36px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: 1180px; margin: auto; padding: 0 22px; }
+    header {
+      position: relative;
+      color: #eaf2f9;
+      background:
+        linear-gradient(180deg, rgba(6,10,16,.68), rgba(6,10,16,.92) 60%, #0a1119),
+        linear-gradient(115deg, rgba(30,167,255,.22), transparent 48%),
+        url("subestaciones.webp") center 26% / cover no-repeat;
+      border-bottom: 3px solid var(--blue);
+      box-shadow: 0 18px 50px -20px rgba(30,167,255,.5);
+    }
+    header .lead { color: #d6e2ed; }
+    header .muted { color: #b9c6d3; }
+    header .navlinks { color: #dce6ef; }
+    header .brand small { color: #b9c6d3; }
+    header .eyebrow { color: #38b6ff; }
+    header .btn { border-color: rgba(255,255,255,.22); }
+    header .hero-photo { background: #0d141d; }
+    header .caption { color: #b9c6d3; border-top-color: rgba(255,255,255,.14); }
+    nav { max-width: 1180px; margin: auto; padding: 16px 22px; display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+    .brand { display: flex; align-items: center; gap: 14px; min-width: 250px; }
+    .logo { width: 54px; height: 54px; object-fit: contain; background: rgba(255,255,255,.96); border-radius: 10px; padding: 5px; }
+    .brand strong { display:block; font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing:.6px; }
+    .brand small { color: var(--muted); }
+    .navlinks { display:flex; gap:18px; flex-wrap:wrap; font-size:14px; }
+    .hero { max-width: 1180px; margin: auto; padding: 62px 22px 74px; display: grid; grid-template-columns: 1.12fr .88fr; gap: 36px; align-items: center; }
+    .eyebrow { font-family: var(--body); color: var(--blue-ink); text-transform: uppercase; letter-spacing: 2.5px; font-weight: 600; font-size: 12.5px; margin: 0 0 14px; display: inline-flex; align-items: center; gap: 9px; }
+    .eyebrow::before { content:""; width:22px; height:2px; background: var(--blue); box-shadow: 0 0 10px rgba(30,167,255,.7); }
+    h1 { font-family: var(--display); font-weight: 800; font-size: clamp(48px, 7.4vw, 88px); line-height: .9; margin: 0 0 18px; letter-spacing: .5px; text-transform: uppercase; }
+    h2 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 4.4vw, 50px); line-height: 1.05; margin: 0 0 16px; letter-spacing: .4px; text-transform: uppercase; }
+    h3 { font-family: var(--display); font-weight: 700; letter-spacing:.4px; margin: 0 0 10px; font-size: 23px; }
+    .accent { color: #38b6ff; text-shadow: 0 0 24px rgba(30,167,255,.55); }
+    p { margin-top: 0; }
+    .lead { font-size: 20px; color: var(--muted); max-width: 850px; }
+    .service-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 28px 0 0; }
+    .strip-item { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); border-left: 3px solid var(--blue); padding: 14px 14px; border-radius: 12px; font-family: var(--display); font-weight: 700; letter-spacing:.4px; font-size: 16px; }
+    .actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:28px; }
+    .btn { display: inline-flex; justify-content:center; align-items:center; padding: 13px 18px; border-radius: 10px; font-weight: 800; border: 1px solid var(--line); transition: .2s; font-family: var(--display); letter-spacing:.4px; font-size:16px; }
+    .btn.primary { background: var(--blue); color:#04263f; border-color: var(--blue); box-shadow: 0 10px 26px -10px rgba(30,167,255,.6); }
+    .btn:hover { transform: translateY(-2px); }
+    .hero-photo { border-radius: 22px; overflow:hidden; box-shadow: var(--shadow); border: 1px solid var(--line); background: var(--panel); }
+    .hero-photo img { width:100%; aspect-ratio: 4/4.45; object-fit: cover; }
+    .caption { padding: 14px 16px; color: var(--muted); font-size: 14px; border-top:1px solid var(--line); }
+    section { padding: 68px 0; }
+    .section-head { max-width: 830px; margin-bottom: 28px; }
+    .muted { color: var(--muted); }
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+    .grid2 { display:grid; grid-template-columns: repeat(2, 1fr); gap:18px; }
+    .card { background: var(--panel); border:1px solid var(--line); border-radius:18px; padding:24px; min-height:100%; box-shadow: var(--shadow); }
+    .card.highlight { border-top: 4px solid var(--blue); }
+    ul { margin: 14px 0 0; padding-left: 20px; color: var(--text); }
+    li { margin: 5px 0; }
+    .infra { background: linear-gradient(135deg, rgba(30,167,255,.08), rgba(238,243,249,1)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .split { display:grid; grid-template-columns: .95fr 1.05fr; gap:22px; align-items:center; }
+    .gallery { display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+    .work { background: var(--panel); border:1px solid var(--line); border-radius: 18px; overflow:hidden; min-height: 100%; box-shadow: var(--shadow); }
+    .work img { width: 100%; height: 250px; object-fit: cover; }
+    .work div { padding:18px; }
+    .badges { display:flex; flex-wrap:wrap; gap:10px; }
+    .badge { border:1px solid rgba(11,99,189,.35); background:rgba(30,167,255,.10); color:var(--blue-ink); padding:10px 14px; border-radius:999px; font-weight:700; }
+    .contact { background: linear-gradient(135deg, rgba(30,167,255,.12), #ffffff); border:1px solid var(--line); border-radius:22px; padding:34px; display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; align-items:center; box-shadow: var(--shadow); }
+    .contact-box { background: #f4f7fb; border:1px solid var(--line); border-radius:16px; padding:22px; }
+    footer { text-align:center; color: #9fb0c0; border-top:1px solid var(--line); background:#0a1119; padding:26px 18px; font-size:14px; }
+    .whatsapp { position:fixed; right:18px; bottom:18px; z-index:50; background:#25d366; color:#001b08; padding:14px 16px; border-radius:999px; font-weight:900; box-shadow:0 12px 35px rgba(0,0,0,.28); }
+    @media (max-width: 900px) {
+      nav { align-items:flex-start; flex-direction:column; }
+      .hero, .split, .contact { grid-template-columns:1fr; }
+      .grid, .grid2, .gallery, .service-strip { grid-template-columns:1fr; }
+      .hero { padding-top:42px; }
+      .work img { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <header id="inicio">
+    <nav>
+      <a href="#inicio" class="brand">
+        <img decoding="async" class="logo" src="logo.webp" alt="Logo Ingeniero Jones">
+        <span><strong>INGENIERO JONES</strong><small>Ingeniería Eléctrica Industrial</small></span>
+      </a>
+      <div class="navlinks">
+        <a href="#servicios">Servicios</a>
+        <a href="#obra">Para tu obra</a>
+        <a href="#infraestructura">Infraestructura</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#antecedentes">Antecedentes</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Ing. Francisco Solano Jones · Matrícula CIPBA 57121</p>
+        <h1>Ingeniería <span class="accent">Eléctrica</span> Industrial</h1>
+        <p class="lead">¿Te pidieron un protocolo SRT 900/15? ¿Necesitás medir la puesta a tierra, certificar una instalación o gestionar un nuevo suministro? Lo resolvemos con documentación técnica visada y respaldo profesional.</p>
+        <p class="muted">Más de 25 años desarrollando infraestructura eléctrica para la industria, la construcción y los servicios.</p>
+
+        <div class="service-strip">
+          <div class="strip-item">Protocolo SRT 900/15</div>
+          <div class="strip-item">Medición de puesta a tierra (PAT)</div>
+          <div class="strip-item">Nuevos suministros y potencia</div>
+          <div class="strip-item">CAIE y certificaciones</div>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="https://wa.me/5491128389318?text=Hola,%20vengo%20de%20la%20web%20y%20necesito%20una%20cotización." target="_blank" rel="noopener">Solicitar cotización</a>
+          <a class="btn" href="mailto:ingenierojones@hotmail.com">Enviar documentación</a>
+        </div>
+      </div>
+
+      <aside class="hero-photo">
+        <img decoding="async" src="hero.webp" alt="Ing. Francisco Solano Jones en instalación eléctrica industrial">
+        <div class="caption">Ingeniería, inspección y dirección técnica en instalaciones eléctricas industriales.</div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="servicios">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Servicios más solicitados</p>
+          <h2>Documentación, certificación y cumplimiento técnico</h2>
+          <p class="muted">Servicios orientados a resolver necesidades concretas de empresas, obras, comercios, industrias, consorcios y organismos.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card highlight">
+            <h3>Protocolos SRT 900/15</h3>
+            <p class="muted">Mediciones e informes técnicos para cumplimiento ante ART, Higiene y Seguridad, auditorías y requerimientos internos.</p>
+            <ul>
+              <li>Medición de puesta a tierra (PAT)</li>
+              <li>Continuidad de masas</li>
+              <li>Informes técnicos</li>
+              <li>Recomendaciones de adecuación</li>
+            </ul>
+          </article>
+
+          <article class="card highlight">
+            <h3>Certificaciones e Informes Técnicos</h3>
+            <p class="muted">Certificaciones, relevamientos e informes para habilitaciones, auditorías, organismos y documentación de instalaciones existentes.</p>
+            <ul>
+              <li>CAIE y certificaciones para habilitaciones</li>
+              <li>Auditorías técnicas</li>
+              <li>Relevamientos eléctricos</li>
+              <li>Calidad de energía</li>
+            </ul>
+          </article>
+
+          <article class="card highlight">
+            <h3>Documentación Técnica Visada</h3>
+            <p class="muted">Emisión de documentación técnica profesional para presentaciones formales y tramitaciones ante organismos públicos o privados.</p>
+            <ul>
+              <li>Planos eléctricos</li>
+              <li>Memorias técnicas</li>
+              <li>Censos de carga</li>
+              <li>Estudios de potencia demandada</li>
+            </ul>
+          </article>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="grid2">
+          <article class="card">
+            <h3>Gestión de Trámites Técnicos</h3>
+            <p class="muted">Acompañamiento técnico para presentaciones, factibilidades, nuevos suministros, aumentos de potencia y suministros provisorios de obra.</p>
+            <ul>
+              <li>Gestión ante distribuidoras de energía</li>
+              <li>Gestión ante organismos competentes</li>
+              <li>Presentaciones técnicas</li>
+              <li>Seguimiento documental</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Proyectos y Dirección de Obra</h3>
+            <p class="muted">Desarrollo, dirección e inspección de instalaciones eléctricas industriales, comerciales y de infraestructura.</p>
+            <ul>
+              <li>Proyectos eléctricos industriales</li>
+              <li>Dirección e inspección de obra</li>
+              <li>Auditorías y relevamientos técnicos</li>
+              <li>Especificaciones y cómputos</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="obra" style="background:linear-gradient(135deg, rgba(30,167,255,.10), rgba(238,243,249,1)); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+      <div class="wrap">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Para estudios de arquitectura, desarrolladores y constructoras</p>
+            <h2>Ocupate del proyecto. De la energía me encargo yo.</h2>
+            <p class="muted">Resuelvo toda la ingeniería eléctrica y la conexión de energía de tu obra, de punta a punta, para que no tengas que lidiar con la distribuidora ni con la tramitación técnica.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://wa.me/5491128389318?text=Hola,%20soy%20arquitecto%20o%20desarrollador%20y%20quiero%20coordinar%20la%20ingeniería%20eléctrica%20de%20una%20obra." target="_blank" rel="noopener">Coordinar una obra</a>
+            </div>
+          </div>
+          <div class="card">
+            <ul>
+              <li>Factibilidad y gestión de nuevos suministros ante la distribuidora</li>
+              <li>Proyecto eléctrico, planos y memorias visadas</li>
+              <li>Suministros provisorios de obra y aumentos de potencia</li>
+              <li>Dirección e inspección de la instalación</li>
+              <li>Certificaciones y habilitación final</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="infra" id="infraestructura">
+      <div class="wrap">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Infraestructura eléctrica</p>
+            <h2>Media tensión, baja tensión y subestaciones transformadoras</h2>
+            <p class="muted">Diseño, instalación, inspección y supervisión de infraestructura eléctrica para obras, industrias y servicios críticos.</p>
+          </div>
+          <div class="card">
+            <ul>
+              <li>Diseño e instalación de subestaciones transformadoras</li>
+              <li>Infraestructura eléctrica en media tensión</li>
+              <li>Infraestructura eléctrica en baja tensión</li>
+              <li>Tableros eléctricos de potencia y distribución</li>
+              <li>Supervisión de montajes electromecánicos</li>
+              <li>Canalizaciones y alimentadores de potencia</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Experiencia en campo</p>
+          <h2>Obras, instalaciones y documentación técnica</h2>
+          <p class="muted">Imágenes de trabajos vinculados con infraestructura eléctrica, subestaciones, tableros, tendidos y servicios industriales.</p>
+        </div>
+
+        <div class="gallery">
+          <article class="work"><img loading="lazy" decoding="async" src="subestaciones.webp" alt="Subestación transformadora"><div><h3>Subestaciones transformadoras</h3><p class="muted">Diseño, supervisión, ampliación e inspección de instalaciones de media tensión.</p></div></article>
+          <article class="work"><img loading="lazy" decoding="async" src="media-tension.webp" alt="Equipamiento de media tensión"><div><h3>Equipamiento de media tensión</h3><p class="muted">Montaje e inspección de sistemas de maniobra, protección y distribución.</p></div></article>
+          <article class="work"><img loading="lazy" decoding="async" src="tableros.webp" alt="Tablero eléctrico de potencia"><div><h3>Tableros de potencia</h3><p class="muted">Tableros industriales, barras, interruptores en caja moldeada y distribución de cargas.</p></div></article>
+          <article class="work"><img loading="lazy" decoding="async" src="canalizaciones.webp" alt="Tendido de cables de potencia"><div><h3>Canalizaciones y alimentadores</h3><p class="muted">Tendido de conductores de potencia e infraestructura subterránea.</p></div></article>
+          <article class="work"><img loading="lazy" decoding="async" src="terminaciones.webp" alt="Terminación de cables de potencia"><div><h3>Terminaciones de potencia</h3><p class="muted">Preparación, identificación y conexionado de cables en instalaciones industriales.</p></div></article>
+          <article class="work"><img loading="lazy" decoding="async" src="infraestructura-estrategica.webp" alt="Trabajo en TANDANOR"><div><h3>Infraestructura estratégica</h3><p class="muted">Participación en obras industriales y entornos de alta exigencia técnica.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="antecedentes">
+      <div class="wrap">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Antecedentes profesionales</p>
+            <h2>Participación en proyectos e instalaciones de relevancia</h2>
+            <p class="muted">Experiencia desarrollada en obras, servicios e instalaciones vinculadas con infraestructura pública, privada e industrial.</p>
+            <div class="badges">
+              <span class="badge">PRO.CRE.AR</span>
+              <span class="badge">EDENOR</span>
+              <span class="badge">Aeropuertos Argentina 2000</span>
+              <span class="badge">TANDANOR</span>
+            </div>
+          </div>
+          <article class="work">
+            <img loading="lazy" decoding="async" src="aeroportuaria.webp" alt="Intervención en infraestructura aeroportuaria">
+            <div><h3>Infraestructura aeroportuaria</h3><p class="muted">Intervención en instalaciones técnicas y servicios críticos.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="wrap">
+        <div class="contact">
+          <div>
+            <p class="eyebrow">Contacto</p>
+            <h2>Solicitá una cotización</h2>
+            <p class="muted">Indicá ubicación, tipo de instalación, potencia aproximada y documentación que necesitás presentar. Para protocolos SRT 900/15, aclarar cantidad de tableros, sectores y si existen informes anteriores.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://wa.me/5491128389318?text=Hola,%20vengo%20de%20la%20web%20y%20quiero%20pedir%20una%20cotización." target="_blank" rel="noopener">Contactar por WhatsApp</a>
+              <a class="btn" href="mailto:ingenierojones@hotmail.com">Enviar mail</a>
+            </div>
+          </div>
+          <div class="contact-box">
+            <p><strong>Ing. Francisco Solano Jones</strong></p>
+            <p>Ingeniero Electricista Industrial</p>
+            <p>Matrícula CIPBA Nº 57121</p>
+            <p>Teléfono: <a href="tel:+5491128389318">+54 9 11 2838-9318</a></p>
+            <p>Correo: <a href="mailto:ingenierojones@hotmail.com">ingenierojones@hotmail.com</a></p>
+            <p>Zona de servicio: General Rodríguez y alrededores — Provincia de Buenos Aires</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="whatsapp" href="https://wa.me/5491128389318?text=Hola,%20vengo%20de%20la%20web." target="_blank" rel="noopener">WhatsApp</a>
+
+  <footer>
+    <p>© 2026 Ingeniero Jones. Ingeniería Eléctrica Industrial y Servicios Profesionales.</p>
+    <p>Protocolos SRT 900/15 · Certificaciones · Documentación Técnica Visada · Infraestructura Eléctrica MT/BT</p>
+  </footer>
+</body>
+</html>
