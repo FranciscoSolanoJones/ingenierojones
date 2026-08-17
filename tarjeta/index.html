@@ -147,7 +147,7 @@
       padding-top:22px;
     }
     label{display:block;font-size:.9rem;font-weight:700;margin:12px 0 6px}
-    input,textarea{
+    input,textarea,select{
       width:100%;
       border:1px solid var(--line);
       border-radius:9px;
@@ -158,6 +158,21 @@
     }
     textarea{min-height:110px;resize:vertical}
     .small{font-size:.84rem;color:var(--muted);margin:10px 0 0}
+    .welcome-contact{
+      text-align:center;
+      padding:30px 28px 28px;
+    }
+    .welcome-contact .contact-name{
+      font-size:1.45rem;
+      font-weight:800;
+      margin:6px 0 2px;
+      color:var(--ink);
+    }
+    .welcome-contact .contact-role{
+      margin:0 0 20px;
+      color:var(--muted);
+    }
+    .welcome-contact .modal-actions{margin-bottom:12px}
     @media(max-width:680px){
       header{min-height:64vh;padding-top:50px}
       section{padding:54px 0}
@@ -221,10 +236,56 @@
 
 <section id="contacto" class="contact-band">
   <div class="wrap">
-    <h2>No lo piense más.<br>Contacte a Francisco Solano Jones.</h2>
-    <div class="actions">
-      <button class="btn primary" id="openContact" type="button">CONTACTO</button>
-      <a class="btn" href="https://ingenierojones.com.ar/" target="_blank" rel="noopener">INGENIEROJONES.COM.AR</a>
+    <div class="eyebrow">Pedido de servicio</div>
+    <h2>¿Qué necesita resolver?</h2>
+    <p class="intro">
+      Cuénteme brevemente su necesidad. Se preparará un e-mail con los datos ingresados para que pueda enviarlo desde su celular.
+    </p>
+
+    <form id="mailForm" style="max-width:720px;margin-top:30px">
+      <label for="name">Nombre y apellido</label>
+      <input id="name" name="name" autocomplete="name" required>
+
+      <label for="company">Empresa / Organización</label>
+      <input id="company" name="company" autocomplete="organization">
+
+      <label for="phone">Teléfono</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel">
+
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" autocomplete="email">
+
+      <label for="service">Tipo de servicio</label>
+      <select id="service" name="service">
+        <option value="">Seleccione una opción</option>
+        <option>Proyecto eléctrico</option>
+        <option>Instalación industrial</option>
+        <option>Mediciones y certificaciones</option>
+        <option>Gestión de la energía</option>
+        <option>Dirección / asistencia técnica</option>
+        <option>Nuevo suministro / aumento de potencia</option>
+        <option>Otro</option>
+      </select>
+
+      <label for="message">Describa brevemente qué necesita resolver</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button class="btn primary" style="width:100%;margin-top:16px" type="submit">
+        PREPARAR PEDIDO DE SERVICIO
+      </button>
+      <p class="small">
+        Se abrirá su aplicación de correo con el pedido preparado para enviar a ingenierojones@hotmail.com.
+      </p>
+    </form>
+
+    <div class="modal-actions" style="max-width:720px;margin-top:24px">
+      <a class="btn"
+         href="https://wa.me/5491121700200?text=Hola%20Ing.%20Jones.%20Escane%C3%A9%20su%20tarjeta%20y%20quisiera%20realizar%20una%20consulta."
+         target="_blank" rel="noopener">WHATSAPP</a>
+
+      <a class="btn"
+         href="https://ingenierojones.com.ar/"
+         target="_blank" rel="noopener">SITIO WEB COMPLETO</a>
     </div>
   </div>
 </section>
@@ -233,94 +294,96 @@
   <div class="wrap">Francisco Solano Jones · Ingeniero Eléctrico Industrial</div>
 </footer>
 
-<dialog id="contactModal">
-  <div class="modal">
-    <div class="modal-top">
-      <div>
-        <div class="eyebrow">Contacto</div>
-        <h2>Francisco Solano Jones</h2>
-      </div>
-      <button class="close" id="closeContact" aria-label="Cerrar">×</button>
-    </div>
 
-    <p class="intro" style="margin-bottom:0">Elija el medio que le resulte más conveniente.</p>
-
+<dialog id="saveContactModal">
+  <div class="welcome-contact">
+    <div class="eyebrow">Tarjeta digital</div>
+    <div class="contact-name">Francisco Solano Jones</div>
+    <p class="contact-role">Ingeniero Eléctrico Industrial</p>
+    <h2 style="font-size:1.45rem;margin-bottom:10px">¿Desea guardar mis datos de contacto?</h2>
+    <p class="intro" style="margin:0 auto 20px">
+      Puede guardar en su celular mi nombre, teléfono, e-mail y sitio web.
+    </p>
     <div class="modal-actions">
-      <a class="btn primary"
-         href="https://wa.me/5491121700200?text=Hola%20Ing.%20Jones.%20Escane%C3%A9%20su%20tarjeta%20y%20quisiera%20realizar%20una%20consulta."
-         target="_blank" rel="noopener">WHATSAPP</a>
-
-      <a class="btn"
-         href="mailto:ingenierojones@hotmail.com?subject=Consulta%20de%20ingenier%C3%ADa%20el%C3%A9ctrica">E-MAIL</a>
-
-      <a class="btn"
-         href="https://ingenierojones.com.ar/"
-         target="_blank" rel="noopener">SITIO WEB COMPLETO</a>
+      <button class="btn primary" id="saveContact" type="button">GUARDAR CONTACTO</button>
+      <button class="btn" id="continueWithoutSaving" type="button">CONTINUAR SIN GUARDAR</button>
     </div>
-
-    <form id="mailForm">
-      <strong>Enviar una consulta por e-mail</strong>
-
-      <label for="name">Nombre</label>
-      <input id="name" name="name" autocomplete="name" required>
-
-      <label for="company">Empresa</label>
-      <input id="company" name="company" autocomplete="organization">
-
-      <label for="message">Consulta</label>
-      <textarea id="message" name="message" required></textarea>
-
-      <button class="btn primary" style="width:100%;margin-top:14px" type="submit">PREPARAR E-MAIL</button>
-      <p class="small">Se abrirá su aplicación de correo con el mensaje preparado para enviar.</p>
-    </form>
+    <p class="small">Su celular le pedirá confirmar antes de agregar el contacto.</p>
   </div>
 </dialog>
-
 <script>
-  const modal = document.getElementById('contactModal');
-  const openBtn = document.getElementById('openContact');
-  const closeBtn = document.getElementById('closeContact');
-  const contactSection = document.getElementById('contacto');
+  const saveContactModal = document.getElementById('saveContactModal');
+  const saveContactBtn = document.getElementById('saveContact');
+  const continueWithoutSavingBtn = document.getElementById('continueWithoutSaving');
 
-  function openModal(){
-    if (!modal.open) modal.showModal();
+  function showSaveContactPrompt(){
+    if (!sessionStorage.getItem('saveContactPromptShown') && !saveContactModal.open) {
+      sessionStorage.setItem('saveContactPromptShown', '1');
+      setTimeout(() => saveContactModal.showModal(), 350);
+    }
   }
 
-  openBtn.addEventListener('click', openModal);
-  closeBtn.addEventListener('click', () => modal.close());
+  function downloadVCard(){
+    const vcard = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'N:Jones;Francisco Solano;;;',
+      'FN:Francisco Solano Jones',
+      'ORG:Ingeniero Jones',
+      'TITLE:Ingeniero Eléctrico Industrial',
+      'TEL;TYPE=CELL:+5491121700200',
+      'EMAIL;TYPE=INTERNET:ingenierojones@hotmail.com',
+      'URL:https://ingenierojones.com.ar/',
+      'NOTE:Ingeniería eléctrica industrial',
+      'END:VCARD'
+    ].join('\r\n');
 
-  modal.addEventListener('click', (event) => {
-    const box = modal.getBoundingClientRect();
-    const outside = event.clientX < box.left || event.clientX > box.right ||
-                    event.clientY < box.top || event.clientY > box.bottom;
-    if (outside) modal.close();
-  });
+    const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Francisco-Solano-Jones.vcf';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+    saveContactModal.close();
+  }
 
-  // Abre el modal una sola vez por visita al llegar al cierre.
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !sessionStorage.getItem('contactModalShown')) {
-        sessionStorage.setItem('contactModalShown', '1');
-        setTimeout(openModal, 350);
-      }
-    });
-  }, { threshold: 0.65 });
+  saveContactBtn.addEventListener('click', downloadVCard);
+  continueWithoutSavingBtn.addEventListener('click', () => saveContactModal.close());
 
-  observer.observe(contactSection);
+  window.addEventListener('DOMContentLoaded', showSaveContactPrompt);
+</script>
 
-  // Formulario sin servidor: compone un correo listo para enviar.
+
+
+
+<script>
+  // Cuestionario final: prepara un e-mail con el pedido de servicio.
   document.getElementById('mailForm').addEventListener('submit', (event) => {
     event.preventDefault();
+
     const name = document.getElementById('name').value.trim();
     const company = document.getElementById('company').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const service = document.getElementById('service').value.trim();
     const message = document.getElementById('message').value.trim();
 
-    const subject = encodeURIComponent('Consulta de ingeniería eléctrica');
+    const subject = encodeURIComponent(
+      service ? `Pedido de servicio - ${service}` : 'Pedido de servicio - Ingeniería eléctrica'
+    );
+
     const body = encodeURIComponent(
+      `PEDIDO DE SERVICIO\n\n` +
       `Nombre: ${name}\n` +
-      `Empresa: ${company || '-'}\n\n` +
-      `Consulta:\n${message}\n\n` +
-      `Enviado desde ingenierojones.com.ar/tarjeta`
+      `Empresa / Organización: ${company || '-'}\n` +
+      `Teléfono: ${phone || '-'}\n` +
+      `E-mail: ${email || '-'}\n` +
+      `Tipo de servicio: ${service || '-'}\n\n` +
+      `Necesidad:\n${message}\n\n` +
+      `Enviado desde https://ingenierojones.com.ar/tarjeta/`
     );
 
     window.location.href =
