@@ -317,8 +317,7 @@
   const continueWithoutSavingBtn = document.getElementById('continueWithoutSaving');
 
   function showSaveContactPrompt(){
-    if (!sessionStorage.getItem('saveContactPromptShown') && !saveContactModal.open) {
-      sessionStorage.setItem('saveContactPromptShown', '1');
+    if (!saveContactModal.open) {
       setTimeout(() => saveContactModal.showModal(), 350);
     }
   }
