@@ -1,204 +1,599 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Ing. Francisco Solano Jones</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Francisco Solano Jones — Ingeniero Eléctrico Industrial. Ingeniería eléctrica para industria, obras e infraestructura.">
+  <title>Francisco Solano Jones | Ingeniero Eléctrico Industrial</title>
 
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      --ink:#162231;
+      --muted:#5d6771;
+      --line:#d9dee4;
+      --soft:#f5f7f9;
+      --accent:#163a63;
+      --max:980px;
     }
 
-    html {
-      scroll-behavior: smooth;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      background:#fff;
+      line-height:1.5;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top, #173b63 0%, #07182a 45%, #030b13 100%);
-      color: white;
-      min-height: 100vh;
+    a{color:inherit}
+    .wrap{width:min(calc(100% - 36px),var(--max));margin:auto}
+
+    header{
+      min-height:74vh;
+      display:flex;
+      align-items:center;
+      border-bottom:1px solid var(--line);
+      padding:72px 0 56px;
     }
 
-    .contenedor {
-      width: 92%;
-      max-width: 720px;
-      margin: auto;
-      padding: 35px 0 60px;
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.78rem;
+      color:var(--muted);
+      margin-bottom:18px;
     }
 
-    .cabecera {
-      text-align: center;
-      padding: 35px 15px 25px;
+    h1{
+      font-size:clamp(2.8rem,9vw,6.8rem);
+      line-height:.92;
+      letter-spacing:-.055em;
+      margin:0 0 24px;
+      max-width:820px;
     }
 
-    .cabecera h1 {
-      margin: 0;
-      font-size: clamp(30px, 7vw, 48px);
-      font-weight: 700;
-      letter-spacing: .3px;
+    .role{
+      font-size:clamp(1.25rem,3.5vw,2rem);
+      font-weight:700;
+      color:var(--accent);
+      margin:0 0 18px;
     }
 
-    .cabecera h2 {
-      margin: 12px 0 0;
-      color: #9dc7f3;
-      font-size: 19px;
-      font-weight: 400;
+    .lead{
+      max-width:720px;
+      font-size:clamp(1.05rem,2.4vw,1.35rem);
+      color:var(--muted);
+      margin:0;
     }
 
-    .linea {
-      width: 80px;
-      height: 3px;
-      background: #2d91e8;
-      margin: 24px auto;
-      border-radius: 5px;
+    section{
+      padding:72px 0;
+      border-bottom:1px solid var(--line);
     }
 
-    .tarjeta {
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.13);
-      border-radius: 18px;
-      padding: 25px;
-      margin: 20px 0;
-      box-shadow: 0 12px 35px rgba(0,0,0,.25);
+    h2{
+      font-size:clamp(1.8rem,4.8vw,3rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+      margin:0 0 14px;
     }
 
-    .tarjeta h3 {
-      margin-top: 0;
-      color: #9dc7f3;
-      font-size: 22px;
+    .intro{
+      max-width:720px;
+      color:var(--muted);
+      margin:0 0 34px;
     }
 
-    .tarjeta p {
-      line-height: 1.6;
-      color: #e8eef5;
+    .services{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
     }
 
-    .boton {
-      display: block;
-      width: 100%;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-      background: #1268ae;
-      padding: 16px 18px;
-      border-radius: 12px;
-      margin: 12px 0;
-      font-size: 17px;
-      font-weight: bold;
-      transition: .2s;
+    .service{
+      padding:24px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fff;
     }
 
-    .boton:hover {
-      background: #1882d4;
-      transform: translateY(-1px);
+    .service h3{margin:0 0 8px;font-size:1.12rem}
+    .service p{margin:0;color:var(--muted)}
+
+    .contact-band{
+      text-align:center;
+      padding:86px 0 96px;
     }
 
-    .boton.secundario {
-      background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.20);
+    .contact-band h2{
+      max-width:780px;
+      margin:0 auto 28px;
     }
 
-    .cta {
-      text-align: center;
-      padding: 30px 10px 10px;
+    .actions{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
     }
 
-    .cta h3 {
-      font-size: 25px;
-      margin-bottom: 10px;
+    .btn{
+      display:inline-flex;
+      min-height:50px;
+      align-items:center;
+      justify-content:center;
+      padding:0 22px;
+      border-radius:10px;
+      border:1px solid var(--ink);
+      text-decoration:none;
+      font-weight:700;
+      cursor:pointer;
+      background:#fff;
+      color:var(--ink);
     }
 
-    .cta p {
-      color: #cbd7e4;
-      margin-bottom: 25px;
+    .btn.primary{
+      background:var(--ink);
+      color:#fff;
     }
 
-    footer {
-      text-align: center;
-      color: #8192a4;
-      font-size: 13px;
-      padding-top: 35px;
+    footer{
+      padding:26px 0 38px;
+      color:var(--muted);
+      font-size:.9rem;
+      text-align:center;
+    }
+
+    dialog{
+      width:min(calc(100% - 28px),520px);
+      border:0;
+      border-radius:18px;
+      padding:0;
+      box-shadow:0 24px 80px rgba(0,0,0,.28);
+    }
+
+    dialog::backdrop{
+      background:rgba(14,22,32,.66);
+    }
+
+    .modal-actions{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin:20px 0 24px;
+    }
+
+    .modal-actions .btn{width:100%}
+
+    form{
+      border-top:1px solid var(--line);
+      padding-top:22px;
+    }
+
+    label{
+      display:block;
+      font-size:.9rem;
+      font-weight:700;
+      margin:12px 0 6px;
+    }
+
+    input,textarea,select{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:9px;
+      padding:12px 13px;
+      font:inherit;
+      color:var(--ink);
+      background:#fff;
+    }
+
+    textarea{
+      min-height:110px;
+      resize:vertical;
+    }
+
+    .small{
+      font-size:.84rem;
+      color:var(--muted);
+      margin:10px 0 0;
+    }
+
+    .welcome-contact{
+      text-align:center;
+      padding:30px 28px 28px;
+    }
+
+    .welcome-contact .contact-name{
+      font-size:1.45rem;
+      font-weight:800;
+      margin:6px 0 2px;
+      color:var(--ink);
+    }
+
+    .welcome-contact .contact-role{
+      margin:0 0 20px;
+      color:var(--muted);
+    }
+
+    .welcome-contact .modal-actions{
+      margin-bottom:12px;
+    }
+
+    @media(max-width:680px){
+      header{min-height:64vh;padding-top:50px}
+      section{padding:54px 0}
+      .services{grid-template-columns:1fr}
+      .service{padding:20px}
+      .contact-band{padding:68px 0 78px}
+      .actions{display:grid}
+      .actions .btn{width:100%}
     }
   </style>
 </head>
 
 <body>
 
-  <main class="contenedor">
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Ingeniería eléctrica</div>
+    <h1>FRANCISCO<br>SOLANO JONES</h1>
+    <p class="role">Ingeniero Eléctrico Industrial</p>
+    <p class="lead">
+      Soluciones de ingeniería para proyectar, ejecutar, verificar y optimizar instalaciones eléctricas.
+    </p>
+  </div>
+</header>
 
-    <section class="cabecera">
-      <h1>Francisco Solano Jones</h1>
-      <h2>Ingeniería Eléctrica</h2>
-      <div class="linea"></div>
+<section>
+  <div class="wrap">
 
-      <p>
-        Soluciones profesionales para instalaciones eléctricas,
-        proyectos, dirección de obra, asesoramiento y gestión técnica.
+    <h2>¿Qué necesita resolver?</h2>
+
+    <p class="intro">
+      Ingeniería aplicada a instalaciones industriales, comerciales y de infraestructura,
+      con foco en seguridad, confiabilidad y viabilidad técnica y económica.
+    </p>
+
+    <div class="services">
+
+      <article class="service">
+        <h3>Proyectos eléctricos</h3>
+        <p>Diseño, cálculo y documentación técnica para instalaciones de Baja y Media Tensión.</p>
+      </article>
+
+      <article class="service">
+        <h3>Instalaciones industriales</h3>
+        <p>Distribución eléctrica, tableros, alimentadores, protecciones, canalizaciones y puesta a tierra.</p>
+      </article>
+
+      <article class="service">
+        <h3>Mediciones y certificaciones</h3>
+        <p>Puesta a tierra, continuidad, protocolos reglamentarios, relevamientos e informes técnicos.</p>
+      </article>
+
+      <article class="service">
+        <h3>Gestión de la energía</h3>
+        <p>Demanda, potencia, factor de potencia, calidad de energía y oportunidades de reducción de costos.</p>
+      </article>
+
+      <article class="service">
+        <h3>Dirección y asistencia técnica</h3>
+        <p>Ingeniería, inspección y representación técnica desde el proyecto hasta la puesta en servicio.</p>
+      </article>
+
+      <article class="service">
+        <h3>Suministros eléctricos</h3>
+        <p>Nuevos suministros, aumentos de potencia y gestiones técnicas ante empresas distribuidoras.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="contact-band">
+
+  <div class="wrap">
+
+    <div class="eyebrow">Pedido de servicio</div>
+
+    <h2>¿Qué necesita resolver?</h2>
+
+    <p class="intro">
+      Cuénteme brevemente su necesidad. Se preparará un e-mail con los datos ingresados
+      para que pueda enviarlo desde su celular.
+    </p>
+
+    <form id="mailForm" style="max-width:720px;margin-top:30px">
+
+      <label for="name">Nombre y apellido</label>
+      <input id="name" name="name" autocomplete="name" required>
+
+      <label for="company">Empresa / Organización</label>
+      <input id="company" name="company" autocomplete="organization">
+
+      <label for="phone">Teléfono</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel">
+
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" autocomplete="email">
+
+      <label for="service">Tipo de servicio</label>
+
+      <select id="service" name="service">
+        <option value="">Seleccione una opción</option>
+        <option>Proyecto eléctrico</option>
+        <option>Instalación industrial</option>
+        <option>Mediciones y certificaciones</option>
+        <option>Gestión de la energía</option>
+        <option>Dirección / asistencia técnica</option>
+        <option>Nuevo suministro / aumento de potencia</option>
+        <option>Otro</option>
+      </select>
+
+      <label for="message">Describa brevemente qué necesita resolver</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button class="btn primary"
+              style="width:100%;margin-top:16px"
+              type="submit">
+        PREPARAR PEDIDO DE SERVICIO
+      </button>
+
+      <p class="small">
+        Se abrirá su aplicación de correo con el pedido preparado para enviar a
+        ingenierojones@hotmail.com.
       </p>
-    </section>
 
-    <section class="tarjeta">
-      <h3>Servicios profesionales</h3>
+    </form>
 
-      <p>
-        Proyecto y documentación de instalaciones eléctricas.
-      </p>
+    <div class="modal-actions" style="max-width:720px;margin-top:24px">
 
-      <p>
-        Dirección, supervisión y asistencia técnica de obra.
-      </p>
-
-      <p>
-        Estudios, relevamientos y diagnóstico de instalaciones existentes.
-      </p>
-
-      <p>
-        Gestión técnica y trámites vinculados al suministro eléctrico.
-      </p>
-    </section>
-
-    <section class="tarjeta">
-      <h3>Contacto</h3>
-
-      <p>
-        Puede comunicarse directamente o ingresar al sitio web
-        para conocer más sobre los servicios disponibles.
-      </p>
-
-      <a class="boton"
-         href="https://www.ingenierojones.com.ar">
-        Visitar ingenierojones.com.ar
+      <a class="btn"
+         href="https://wa.me/541128389318?text=Hola%20Ing.%20Jones.%20Escane%C3%A9%20su%20tarjeta%20y%20quisiera%20realizar%20una%20consulta."
+         target="_blank"
+         rel="noopener">
+         WHATSAPP
       </a>
 
-      <a class="boton secundario"
-         href="mailto: ingenierojones@hotmail.com">
-        Enviar un correo
+      <a class="btn"
+         href="https://ingenierojones.com.ar/"
+         target="_blank"
+         rel="noopener">
+         SITIO WEB COMPLETO
       </a>
-    </section>
 
-    <section class="cta">
-      <h3>No lo piense más.</h3>
+    </div>
 
-      <p>
-        Contacte a Francisco Solano Jones y conversemos sobre su proyecto.
-      </p>
+  </div>
+</section>
 
-      <a class="boton"
-         href="https://www.ingenierojones.com.ar">
-        CONTACTAR
-      </a>
-    </section>
+<footer>
+  <div class="wrap">
+    Francisco Solano Jones · Ingeniero Eléctrico Industrial
+  </div>
+</footer>
 
-    <footer>
-      Francisco Solano Jones · Ingeniería Eléctrica
-    </footer>
+<!-- MODAL GUARDAR CONTACTO -->
 
-  </main>
+<dialog id="saveContactModal">
+
+  <div class="welcome-contact">
+
+    <div class="eyebrow">Tarjeta digital</div>
+
+    <div class="contact-name">
+      Francisco Solano Jones
+    </div>
+
+    <p class="contact-role">
+      Ingeniero Eléctrico Industrial
+    </p>
+
+    <h2 style="font-size:1.45rem;margin-bottom:10px">
+      ¿Desea guardar mis datos de contacto?
+    </h2>
+
+    <p class="intro" style="margin:0 auto 20px">
+      Puede guardar en su celular mi nombre, teléfono, e-mail y sitio web.
+    </p>
+
+    <div class="modal-actions">
+
+      <button class="btn primary"
+              id="saveContact"
+              type="button">
+        GUARDAR CONTACTO
+      </button>
+
+      <button class="btn"
+              id="continueWithoutSaving"
+              type="button">
+        CONTINUAR SIN GUARDAR
+      </button>
+
+    </div>
+
+    <p class="small">
+      Su celular le pedirá confirmar antes de agregar el contacto.
+    </p>
+
+  </div>
+
+</dialog>
+
+<script>
+
+const saveContactModal =
+  document.getElementById('saveContactModal');
+
+const saveContactBtn =
+  document.getElementById('saveContact');
+
+const continueWithoutSavingBtn =
+  document.getElementById('continueWithoutSaving');
+
+
+function showSaveContactPrompt(){
+
+  if (!saveContactModal.open) {
+
+    setTimeout(
+      () => saveContactModal.showModal(),
+      350
+    );
+
+  }
+}
+
+
+function downloadVCard(){
+
+  const vcard = [
+
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    'N:Jones;Francisco Solano;;;',
+    'FN:Francisco Solano Jones',
+    'ORG:Ingeniero Jones',
+    'TITLE:Ingeniero Eléctrico Industrial',
+
+    'TEL;TYPE=CELL:+541128389318',
+
+    'EMAIL;TYPE=INTERNET:ingenierojones@hotmail.com',
+    'URL:https://ingenierojones.com.ar/',
+    'NOTE:Ingeniería eléctrica industrial',
+    'END:VCARD'
+
+  ].join('\r\n');
+
+
+  const blob =
+    new Blob(
+      [vcard],
+      {type:'text/vcard;charset=utf-8'}
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const a =
+    document.createElement('a');
+
+
+  a.href = url;
+
+  a.download =
+    'Francisco-Solano-Jones.vcf';
+
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+
+  setTimeout(
+    () => URL.revokeObjectURL(url),
+    1500
+  );
+
+
+  saveContactModal.close();
+
+}
+
+
+saveContactBtn.addEventListener(
+  'click',
+  downloadVCard
+);
+
+
+continueWithoutSavingBtn.addEventListener(
+  'click',
+  () => saveContactModal.close()
+);
+
+
+window.addEventListener(
+  'DOMContentLoaded',
+  showSaveContactPrompt
+);
+
+</script>
+
+<script>
+
+document
+.getElementById('mailForm')
+.addEventListener(
+  'submit',
+  (event) => {
+
+    event.preventDefault();
+
+
+    const name =
+      document.getElementById('name').value.trim();
+
+    const company =
+      document.getElementById('company').value.trim();
+
+    const phone =
+      document.getElementById('phone').value.trim();
+
+    const email =
+      document.getElementById('email').value.trim();
+
+    const service =
+      document.getElementById('service').value.trim();
+
+    const message =
+      document.getElementById('message').value.trim();
+
+
+    const subject =
+      encodeURIComponent(
+
+        service
+        ? `Pedido de servicio - ${service}`
+        : 'Pedido de servicio - Ingeniería eléctrica'
+
+      );
+
+
+    const body =
+      encodeURIComponent(
+
+`PEDIDO DE SERVICIO
+
+Nombre: ${name}
+Empresa / Organización: ${company || '-'}
+Teléfono: ${phone || '-'}
+E-mail: ${email || '-'}
+Tipo de servicio: ${service || '-'}
+
+Necesidad:
+${message}
+
+Enviado desde https://ingenierojones.com.ar/tarjeta/`
+
+      );
+
+
+    window.location.href =
+
+      `mailto:ingenierojones@hotmail.com?subject=${subject}&body=${body}`;
+
+  }
+);
+
+</script>
 
 </body>
-</html>
+  </html>
