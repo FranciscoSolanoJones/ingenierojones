@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingeniero Jones | Medidores y CAIE</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#202020}
+.contenedor{max-width:780px;margin:auto;padding:28px 18px 60px}
+.pantalla{display:none;background:#fff;padding:26px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.pantalla.activa{display:block}
+.hero{text-align:center;padding-top:34px}
+.hero h1{font-size:34px;line-height:1.15;margin:0 0 14px}
+.hero p{font-size:20px}
+h2{font-size:25px;margin:0 0 14px}
+h3{margin-top:22px}
+p{line-height:1.48}
+label.opcion{display:block;padding:11px 0;font-size:17px;cursor:pointer}
+input[type="radio"],input[type="checkbox"]{margin-right:10px;transform:scale(1.18)}
+input[type="number"],input[type="text"]{padding:10px;border:1px solid #bbb;border-radius:6px;font-size:17px}
+.acciones{display:flex;gap:10px;justify-content:space-between;margin-top:24px;flex-wrap:wrap}
+.btn{border:0;border-radius:7px;padding:13px 20px;font-size:16px;cursor:pointer}
+.btn-principal{background:#b32020;color:#fff;font-weight:bold}
+.btn-secundario{background:#e8e8e8;color:#222}
+.btn-grande{padding:16px 28px;font-size:18px}
+.precio{font-size:27px;font-weight:bold;margin:8px 0}
+.servicio{border-top:1px solid #ddd;padding:18px 0}
+.servicio:first-child{border-top:0}
+.alerta{padding:15px;background:#f3f3f3;border-left:5px solid #b32020;margin:18px 0}
+.tabla-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:620px}
+th,td{padding:9px;border-bottom:1px solid #e4e4e4}
+th{text-align:left}
+td.num,th.num{text-align:right}
+.carga-input{width:90px}
+.cant-input{width:72px}
+.resultado-potencia{font-size:21px;margin-top:20px}
+.muted{font-size:14px;color:#555}
+.terminos{margin-top:24px;text-align:center;font-size:14px}
+.terminos a{text-decoration:underline;cursor:pointer}
+#detalleTerminos{display:none;text-align:left;margin-top:14px;padding:18px;background:#fff;border-radius:8px}
+@media(max-width:600px){
+  .hero h1{font-size:29px}
+  .pantalla{padding:20px}
+  .acciones .btn{flex:1}
+}
+</style>
+</head>
+<body>
+<div class="contenedor">
+
+<section id="inicio" class="pantalla activa hero">
+  <h1>Si necesitás un medidor,<br>lo mejor es preguntarle al que sabe.</h1>
+  <p>¿Querés saber qué necesitás?</p>
+  <button class="btn btn-principal btn-grande" onclick="irA('antecedente')">QUIERO SABER QUÉ NECESITO</button>
+</section>
+
+<section id="antecedente" class="pantalla">
+  <h2>¿La propiedad tuvo medidor anteriormente?</h2>
+  <label class="opcion"><input type="radio" name="tuvoMedidor" value="si">Sí</label>
+  <label class="opcion"><input type="radio" name="tuvoMedidor" value="no">No</label>
+  <label class="opcion"><input type="radio" name="tuvoMedidor" value="nose">No lo sé</label>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal" onclick="resolverAntecedente()">Continuar</button>
+  </div>
+</section>
+
+<section id="reforma" class="pantalla">
+  <h2>¿La instalación eléctrica fue reformada, ampliada o modificada?</h2>
+  <label class="opcion"><input type="radio" name="reformada" value="si">Sí</label>
+  <label class="opcion"><input type="radio" name="reformada" value="no">No</label>
+  <label class="opcion"><input type="radio" name="reformada" value="nose">No lo sé</label>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal" onclick="resolverReforma()">Continuar</button>
+  </div>
+</section>
+
+<section id="uso" class="pantalla">
+  <h2>¿Para qué se utilizará el suministro?</h2>
+  <label class="opcion"><input type="radio" name="uso" value="vivienda">Vivienda</label>
+  <label class="opcion"><input type="radio" name="uso" value="comercio">Comercio</label>
+  <label class="opcion"><input type="radio" name="uso" value="industria">Industria</label>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal" onclick="resolverUso()">Continuar</button>
+  </div>
+</section>
+
+<section id="docsComerciales" class="pantalla">
+  <h2>Documentación disponible</h2>
+  <p>Marcá lo que ya tenés. Podés continuar aunque falte documentación.</p>
+  <label class="opcion"><input type="checkbox" name="docCom" value="cuit">CUIT</label>
+  <label class="opcion"><input type="checkbox" name="docCom" value="habilitacion">Habilitación municipal</label>
+  <label class="opcion"><input type="checkbox" name="docCom" value="tramite">Constancia de habilitación en trámite</label>
+  <label class="opcion"><input type="checkbox" name="docCom" value="sociedad">Estatuto o contrato social</label>
+  <label class="opcion"><input type="checkbox" name="docCom" value="dni">DNI del titular o representante</label>
+  <label class="opcion"><input type="checkbox" name="docCom" value="factura">Factura o antecedente de suministro anterior</label>
+  <label class="opcion"><input type="checkbox" name="docCom" value="cargas">Detalle de cargas</label>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal" onclick="irA('conocePotencia')">Continuar</button>
+  </div>
+</section>
+
+<section id="conocePotencia" class="pantalla">
+  <h2>¿Conocés la potencia que necesitás?</h2>
+  <label class="opcion"><input type="radio" name="conocePotencia" value="si">Sí</label>
+  <label class="opcion"><input type="radio" name="conocePotencia" value="no">No</label>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal" onclick="resolverConocePotencia()">Continuar</button>
+  </div>
+</section>
+
+<section id="kwComercial" class="pantalla">
+  <h2>Indicá la potencia necesaria</h2>
+  <p><input id="kwIngresados" type="number" min="0.1" step="0.1" style="width:150px"> kW</p>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal" onclick="clasificarPotenciaIngresada()">Continuar</button>
+  </div>
+</section>
+
+<section id="cotizacionRelevamiento" class="pantalla">
+  <h2>Necesitamos evaluar tu instalación</h2>
+  <p>Para determinar la potencia necesaria en una instalación comercial o industrial es necesario realizar un relevamiento técnico en el establecimiento.</p>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal">SOLICITAR COTIZACIÓN</button>
+  </div>
+</section>
+
+<section id="potenciaVivienda" class="pantalla">
+<h2>¿Conocés la potencia que necesitás?</h2>
+<label class="opcion"><input type="radio" name="conocePotenciaViv" value="si">Sí</label>
+<label class="opcion"><input type="radio" name="conocePotenciaViv" value="no">No</label>
+<div class="acciones"><button class="btn btn-secundario" onclick="volver()">Regresar</button><button class="btn btn-principal" onclick="resolverPotenciaVivienda()">Continuar</button></div>
+</section>
+
+<section id="kwVivienda" class="pantalla">
+<h2>Indicá la potencia necesaria</h2>
+<p><input id="kwVivIngresados" type="number" min="0.1" step="0.1" style="width:150px"> kW</p>
+<div class="acciones"><button class="btn btn-secundario" onclick="volver()">Regresar</button><button class="btn btn-principal" onclick="clasificarKwVivienda()">Continuar</button></div>
+</section>
+
+<section id="circuitosVivienda" class="pantalla">
+<h2>Mirá tu tablero eléctrico</h2>
+<p>¿Cuántas llaves de circuitos tiene aproximadamente?</p>
+<p class="muted">No cuentes la llave general ni el interruptor diferencial.</p>
+<label class="opcion"><input type="radio" name="circuitosViv" value="1-3">1 a 3 circuitos</label>
+<label class="opcion"><input type="radio" name="circuitosViv" value="4-6">4 a 6 circuitos</label>
+<label class="opcion"><input type="radio" name="circuitosViv" value="7-10">7 a 10 circuitos</label>
+<label class="opcion"><input type="radio" name="circuitosViv" value="mas10">Más de 10 circuitos</label>
+<label class="opcion"><input type="radio" name="circuitosViv" value="nose">No lo sé</label>
+<div class="acciones"><button class="btn btn-secundario" onclick="volver()">Regresar</button><button class="btn btn-principal" onclick="resolverCircuitosVivienda()">Continuar</button></div>
+</section>
+
+<section id="cargasEspecialesVivienda" class="pantalla">
+<h2>¿Tenés alguno de estos equipos?</h2>
+<p>Marcá solamente los que correspondan.</p>
+<label class="opcion"><input type="checkbox" name="especialViv" value="termotanque">Termotanque eléctrico</label>
+<label class="opcion"><input type="checkbox" name="especialViv" value="aire">Aire acondicionado</label>
+<label class="opcion"><input type="checkbox" name="especialViv" value="bomba">Bomba de agua o presurizadora</label>
+<label class="opcion"><input type="checkbox" name="especialViv" value="cocina">Cocina u horno eléctrico</label>
+<label class="opcion"><input type="checkbox" name="especialViv" value="piscina">Piscina</label>
+<label class="opcion"><input type="checkbox" name="especialViv" value="vehiculo">Cargador de vehículo eléctrico</label>
+<label class="opcion"><input type="checkbox" name="especialViv" value="ninguna">Ninguna de las anteriores</label>
+<div class="acciones"><button class="btn btn-secundario" onclick="volver()">Regresar</button><button class="btn btn-principal" onclick="estimarSuministroVivienda()">Ver suministro recomendado</button></div>
+</section>
+
+<section id="suministro" class="pantalla">
+  <div id="contenidoSuministro"></div>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal" onclick="continuarDesdeSuministro()">Continuar</button>
+  </div>
+</section>
+
+<section id="preguntaCaie" class="pantalla">
+  <h2>¿Ya tenés el CAIE de la instalación?</h2>
+  <label class="opcion"><input type="radio" name="tieneCaie" value="si">Sí</label>
+  <label class="opcion"><input type="radio" name="tieneCaie" value="no">No</label>
+  <label class="opcion"><input type="radio" name="tieneCaie" value="nose">No sé qué es un CAIE</label>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal" onclick="resolverCaie()">Continuar</button>
+  </div>
+</section>
+
+<section id="explicaCaie" class="pantalla">
+  <h2>¿Qué es el CAIE?</h2>
+  <p>El <strong>Certificado de Aptitud de Instalaciones Eléctricas (CAIE)</strong> es el documento emitido por un profesional habilitado que certifica la aptitud de la instalación eléctrica.</p>
+  <p>Para emitirlo se realiza una inspección de la instalación y los ensayos eléctricos correspondientes.</p>
+  <div class="alerta"><strong>En este caso el CAIE es necesario para avanzar con el nuevo suministro.</strong></div>
+  <div id="ofertaCaie"></div>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal" onclick="contratarCaie()">QUIERO CONTRATAR EL CAIE</button>
+  </div>
+</section>
+
+<section id="docsCaie" class="pantalla">
+  <h2>Documentación para el CAIE</h2>
+  <p>Marcá lo que tenés disponible.</p>
+  <label class="opcion"><input type="checkbox" name="docCaie" value="planos">Planos aprobados o visados</label>
+  <label class="opcion"><input type="checkbox" name="docCaie" value="catastral">Datos catastrales del inmueble</label>
+  <label class="opcion"><input type="checkbox" name="docCaie" value="factura">Factura o antecedente de suministro anterior</label>
+  <label class="opcion"><input type="checkbox" name="docCaie" value="ninguno">No tengo toda la documentación</label>
+  <p class="muted">La documentación definitiva se verifica según el caso concreto antes de emitir el certificado.</p>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal" onclick="irA('final')">Continuar</button>
+  </div>
+</section>
+
+<section id="final" class="pantalla">
+  <div id="contenidoFinal"></div>
+  <div class="acciones">
+    <button class="btn btn-secundario" onclick="volver()">Regresar</button>
+    <button class="btn btn-principal">SOLICITAR SERVICIO</button>
+  </div>
+</section>
+
+<div class="terminos">
+  <a onclick="toggleTerminos()">Términos y condiciones</a>
+  <div id="detalleTerminos">
+    <p>Los precios corresponden a condiciones estándar de ejecución y a los alcances indicados.</p>
+    <p>Las reparaciones o adecuaciones de instalaciones existentes se cotizan por separado.</p>
+    <p>El precio de pilar corresponde al pilar normalizado exigido por la distribuidora. Montajes sobre fachada, gabinetes embutidos y configuraciones especiales se evalúan por separado.</p>
+    <p>Las tasas, derechos y cargos propios de la distribuidora no están incluidos salvo indicación expresa.</p>
+    <p>La aprobación y conexión definitiva dependen de la distribuidora correspondiente.</p>
+    <p>Los precios pueden actualizarse por cambios de aranceles profesionales, materiales o costos asociados.</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+/*
+  Criterio de clasificación usado en esta versión de prueba:
+  T1 hasta 10 kW; T2 directo >10 y <30 kW; desde 30 kW evaluación particular.
+  Dentro de T1, el corte mono/trifásico está concentrado en una sola constante
+  para poder ajustarlo sin tocar el resto del programa.
+*/
+const LIMITE_MONOFASICO_KW = 7.04; // 32 A x 220 V, referencia Edenor
+
+let historial = [];
+let pantallaActual = "inicio";
+let necesitaCAIE = false;
+let usoSeleccionado = "";
+let potenciaCalculada = 0;
+let suministroActual = "";
+let caieContratado = false;
+
+function mostrarSolo(id){
+  document.querySelectorAll(".pantalla").forEach(p=>p.classList.remove("activa"));
+  document.getElementById(id).classList.add("activa");
+  pantallaActual = id;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function irA(id){
+  if(pantallaActual !== id) historial.push(pantallaActual);
+  mostrarSolo(id);
+}
+
+function volver(){
+  if(!historial.length) return;
+  const anterior = historial.pop();
+  mostrarSolo(anterior);
+}
+
+function seleccionado(nombre){
+  const x = document.querySelector('input[name="'+nombre+'"]:checked');
+  return x ? x.value : null;
+}
+
+function resolverAntecedente(){
+  const v=seleccionado("tuvoMedidor");
+  if(!v){alert("Seleccioná una opción.");return;}
+  if(v==="no"){
+    necesitaCAIE=true;
+    irA("uso");
+  }else if(v==="si"){
+    irA("reforma");
+  }else{
+    necesitaCAIE=true;
+    irA("uso");
+  }
+}
+
+function resolverReforma(){
+  const v=seleccionado("reformada");
+  if(!v){alert("Seleccioná una opción.");return;}
+  necesitaCAIE = (v==="si" || v==="nose");
+  irA("uso");
+}
+
+function resolverUso(){
+  const u=seleccionado("uso");
+  if(!u){alert("Seleccioná una opción.");return;}
+  usoSeleccionado=u;
+  if(u==="vivienda"){
+    irA("potenciaVivienda");
+  }else{
+    irA("docsComerciales");
+  }
+}
+
+function resolverConocePotencia(){
+  const v=seleccionado("conocePotencia");
+  if(!v){alert("Seleccioná una opción.");return;}
+  if(v==="si") irA("kwComercial");
+  else irA("cotizacionRelevamiento");
+}
+
+function resolverPotenciaVivienda(){
+ const v=seleccionado("conocePotenciaViv");
+ if(!v){alert("Seleccioná una opción.");return;}
+ if(v==="si") irA("kwVivienda"); else irA("circuitosVivienda");
+}
+function clasificarKwVivienda(){
+ const kw=parseFloat(document.getElementById("kwVivIngresados").value);
+ if(!kw||kw<=0){alert("Ingresá una potencia válida.");return;}
+ potenciaCalculada=kw;
+ if(kw>10){mostrarEvaluacionVivienda();return;}
+ determinarSuministro();
+}
+function resolverCircuitosVivienda(){
+ if(!seleccionado("circuitosViv")){alert("Seleccioná una opción.");return;}
+ irA("cargasEspecialesVivienda");
+}
+function estimarSuministroVivienda(){
+ const r=seleccionado("circuitosViv");
+ let esp=Array.from(document.querySelectorAll('input[name="especialViv"]:checked')).map(x=>x.value);
+ if(esp.includes("ninguna")) esp=[];
+ const base={"1-3":2.8,"4-6":4.0,"7-10":5.0,"mas10":6.0,"nose":4.5}[r];
+ const inc={termotanque:.55,aire:.45,bomba:.20,cocina:.80,piscina:.65,vehiculo:1.80};
+ let kw=base; esp.forEach(x=>kw+=(inc[x]||0));
+ potenciaCalculada=kw;
+ const fuerzaTri=esp.includes("piscina")||esp.includes("vehiculo")||(esp.includes("cocina")&&esp.includes("aire"))||r==="mas10";
+ if(kw>10||(r==="mas10"&&esp.length>=3)){mostrarEvaluacionVivienda();return;}
+ suministroActual=(fuerzaTri||kw>LIMITE_MONOFASICO_KW)?"T1 Trifásico":"T1 Monofásico";
+ document.getElementById("contenidoSuministro").innerHTML=`<h2>Suministro recomendado</h2><div class="precio">${suministroActual}</div><p>La recomendación surge de las características generales de la instalación que informaste.</p>`;
+ irA("suministro");
+}
+function mostrarEvaluacionVivienda(){
+ suministroActual="Evaluación técnica de vivienda";
+ document.getElementById("contenidoSuministro").innerHTML=`<h2>Recomendamos una evaluación técnica</h2><p>Por las características informadas, conviene verificar la instalación y la demanda antes de definir el suministro.</p>`;
+ irA("suministro");
+}
+
+function determinarSuministro(){
+  if(potenciaCalculada<=10){
+    suministroActual = potenciaCalculada<=LIMITE_MONOFASICO_KW ? "T1 Monofásico" : "T1 Trifásico";
+  }else if(potenciaCalculada<30){
+    suministroActual="T2 hasta 29,9 kW – Medición directa";
+  }else{
+    suministroActual="Evaluación particular – T2 indirecto / T3";
+  }
+
+  const div=document.getElementById("contenidoSuministro");
+  if(suministroActual==="Evaluación técnica de vivienda"){
+    div.innerHTML=`<h2>Evaluación técnica de vivienda</h2><p>Antes de definir el suministro recomendamos verificar la instalación y la demanda en el lugar.</p><p><strong>Solicitá una evaluación.</strong></p>`;
+    return;
+  }
+  if(potenciaCalculada>=30){
+    div.innerHTML=`
+      <h2>Resultado</h2>
+      <div class="precio">${potenciaCalculada.toFixed(1).replace(".",",")} kW</div>
+      <p>Por la potencia indicada corresponde una <strong>evaluación particular</strong> del suministro y del punto de medición.</p>`;
+  }else{
+    div.innerHTML=`
+      <h2>Suministro recomendado</h2>
+      <div class="precio">${suministroActual}</div>
+      <p>Potencia considerada: <strong>${potenciaCalculada.toFixed(1).replace(".",",")} kW</strong>.</p>`;
+  }
+  irA("suministro");
+}
+
+function continuarDesdeSuministro(){
+  if(suministroActual==="Evaluación técnica de vivienda"){
+    prepararFinal(); irA("final"); return;
+  }
+  if(potenciaCalculada>=30){
+    prepararFinal();
+    irA("final");
+    return;
+  }
+  if(necesitaCAIE){
+    irA("preguntaCaie");
+  }else{
+    prepararFinal();
+    irA("final");
+  }
+}
+
+function resolverCaie(){
+  const v=seleccionado("tieneCaie");
+  if(!v){alert("Seleccioná una opción.");return;}
+  if(v==="si"){
+    caieContratado=false;
+    prepararFinal();
+    irA("final");
+  }else{
+    prepararOfertaCaie();
+    irA("explicaCaie");
+  }
+}
+
+function precioCaie(){
+  if(suministroActual==="T1 Monofásico") return "$590.000";
+  if(suministroActual==="T1 Trifásico") return "$675.000";
+  if(suministroActual.startsWith("T2")) return "$774.180";
+  return "A cotizar";
+}
+
+function prepararOfertaCaie(){
+  document.getElementById("ofertaCaie").innerHTML=`
+    <div class="servicio">
+      <h3>CAIE ${suministroActual}</h3>
+      <div class="precio">${precioCaie()}</div>
+      <p>Incluye una visita técnica, inspección y ensayos necesarios para la certificación.</p>
+      <p><strong>Reinspección por observaciones: $100.000 por visita.</strong></p>
+    </div>`;
+}
+
+function contratarCaie(){
+  caieContratado=true;
+  irA("docsCaie");
+}
+
+function prepararFinal(){
+  const div=document.getElementById("contenidoFinal");
+
+  if(suministroActual==="Evaluación técnica de vivienda"){
+    div.innerHTML=`<h2>Evaluación técnica de vivienda</h2><p>Antes de definir el suministro recomendamos verificar la instalación y la demanda en el lugar.</p><p><strong>Solicitá una evaluación.</strong></p>`;
+    return;
+  }
+  if(potenciaCalculada>=30){
+    div.innerHTML=`
+      <h2>Evaluación particular</h2>
+      <p>Para suministros desde 30 kW se requiere evaluar en obra la potencia, el sistema de medición, las protecciones y las exigencias de la distribuidora.</p>
+      <p><strong>Solicitá una evaluación y presupuesto específico.</strong></p>`;
+    return;
+  }
+
+  let caieHTML="";
+  if(necesitaCAIE && caieContratado){
+    caieHTML=`
+      <div class="servicio">
+        <h3>CAIE</h3>
+        <div class="precio">${precioCaie()}</div>
+      </div>`;
+  }else if(necesitaCAIE){
+    caieHTML=`
+      <div class="alerta">El CAIE forma parte de los requisitos de este caso. Si ya lo tenés, podés continuar con el resto de los servicios.</div>`;
+  }
+
+  div.innerHTML=`
+    <h2>${suministroActual}</h2>
+    ${caieHTML}
+    <div class="servicio">
+      <h3>Tramitación del suministro</h3>
+      <div class="precio">$275.000</div>
+      <p>Revisión de documentación, presentación y seguimiento ante la distribuidora.</p>
+    </div>
+    <div class="servicio">
+      <h3>Pilar normalizado</h3>
+      <div class="precio">$1.375.000</div>
+      <p>Pilar normalizado de distribuidora en condiciones estándar de ejecución.</p>
+    </div>
+    <p><strong>Los servicios pueden contratarse en forma independiente.</strong></p>`;
+}
+
+function toggleTerminos(){
+  const d=document.getElementById("detalleTerminos");
+  d.style.display=d.style.display==="block"?"none":"block";
+}
+</script>
+</body>
+</html>
