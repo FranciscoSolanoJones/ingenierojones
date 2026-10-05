@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ingenierojones.com.ar/sitemap.xml
